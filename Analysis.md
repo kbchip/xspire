@@ -20,3 +20,4 @@ Multiple **HouseholdMembers** can **_share_** access to the same **FoodInventory
 **PrimaryUsers** **_view_** **ShoppingLists** based on what is running low, helping avoid duplicate purchases. Furthermore, the **ExpirationAlertSystem** **_provides_** **RecipeSuggestions** based on the available and soon-to-expire items.
 
 # Conceptual Model
+![UML Conceptual Model](https://github.com/user-attachments/assets/b745086c-e4ff-4050-907a-41ef631bdcbf)
