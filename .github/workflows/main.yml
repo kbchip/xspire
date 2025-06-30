@@ -1,0 +1,17 @@
+name: Render Markdown to PDF
+
+on: 
+  workflow_dispatch:
+    inputs:
+      file_rootname:
+        description: "Filename to render (without .md extension)"
+        required: true
+        type: string
+
+jobs:
+  convert_via_pandoc:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: docker://pandoc/latex:3
+        with:
+          args: "${{ inputs.file_rootname }}.md -t pdf -o ${{ inputs.file_rootname }}.pdf"
