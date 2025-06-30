@@ -13,16 +13,10 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-
-      - name: Get file basename (no extension)
-        id: get_file_basename
-        run: |
-          echo "filename=$(basename ${{ inputs.filename }} .md) > $GITHUB_OUTPUT"
-          mkdir output
         
-      - uses: docker://pandoc/latex:3
+      - uses: docker://pandoc/latex:3.7-ubuntu
         with:
-          args: --output=output/result.pdf ${{ steps.get_file_basename.outputs.filename }}
+          args: --output=output/result.pdf ${{ inputs.filename }}
           
       - uses: actions/upload-artifact@v4
         with:
