@@ -3,8 +3,8 @@ name: Render Markdown to PDF
 on: 
   workflow_dispatch:
     inputs:
-      file_rootname:
-        description: "Filename to render (without .md extension)"
+      filename:
+        description: "Filename of markdown file to be rendered"
         required: true
         type: string
 
@@ -12,6 +12,17 @@ jobs:
   convert_via_pandoc:
     runs-on: ubuntu-22.04
     steps:
+      - uses: actions/checkout@v4
+
+      - name: Get file basename (no extension)
+        id: get_file_basename
+        run: echo "filename=$(basename ${{ inputs.filename }} .md) > $GITHUB_OUTPUT
+        
       - uses: docker://pandoc/latex:3
         with:
-          args: "${{ inputs.file_rootname }}.md -t pdf -o ${{ inputs.file_rootname }}.pdf"
+          args: --output=output/result.pdf ${{ steps.get_file_basename.outputs.filename }}
+          
+      - uses: actions/upload-artifact@v4
+        with:
+          name: output
+          path: output
