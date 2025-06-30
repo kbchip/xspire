@@ -16,7 +16,7 @@ jobs:
 
       - name: Get file basename (no extension)
         id: get_file_basename
-        run: echo "filename=$(basename ${{ inputs.filename }} .md) > $GITHUB_OUTPUT
+        run: echo "filename=$(basename ${{ inputs.filename }} .md) > $GITHUB_OUTPUT"
         
       - uses: docker://pandoc/latex:3
         with:
