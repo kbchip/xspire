@@ -39,30 +39,34 @@ Still WIP at time of writing. [Jest](https://jestjs.io/) testing planned but not
 
 # 4. Technology Stack
 
-## Azure
+### Azure
 
 Azure provides our hosting and database services. Specifically, we use Azure Web Apps (through Azure App Services) and Azure Database with MySQL. We chose Azure over alternatives like AWS and Heroku because all team members have prior experience with the Azure ecosystem, as well as the generous student credits we all get through NAU.
 
-## Node.js
+### Node.js
 
 Node is our dependency manager and backend. On the development side, Node (and npm) provide utilities for running and testing code locally, as well as managing versioning and dependencies. This was a relative no-brainer, as the other tech stack options that were compatible with Azure were either unfamiliar to one or more team members (PHP, Go) or too complex for our needs (Java, .NET).
 
-## Next.js (planned)
+### Next.js (planned)
 
 Next.js will be our full-stack framework for building the app. It provides page routing, client-server separation, and is one of the premier choices for using with our frontend, React. Alternative frameworks like Vue, Express, and Angular were considered, but Next.js appeared to be the most robust and the one most team members wanted to gain real-world experience using.
 
-## React (planned)
+### React (planned)
 
 React will be our front-end framework for serving clients the webpage and providing interactions with the web app. React offers reusable components, which makes designing the layout of each page much easier and lends itself well to cohesive visual language. Like Next.js, React was chosen for its reputation and was the framework our team members most wanted to gain experience with.
 
-## Express (temporary)
+### Express (temporary)
 
 Express is our temporary back-end framework used for page routing and HTTP requests. It was chosen for its ease of implementation and compatibility with our mockup, which was made with Balsamiq and later Bootstrap.
 
-## Bootstrap (temporary)
+### Bootstrap (temporary)
 
 Bootstrap is our temporary CSS framework for designing the layout of the app. It uses pre-defined components to speed up the process of getting a website up and running in a usable state. It was chosen based on its structural similarity to React Since Ferm took the lead on web design, he was given final say on the framework for the inital mockup. He had experience using Bootstrap, so it was the one he used.
 
-## Visual Studio Code
+### Visual Studio Code
 
 Visual Studio Code (VSCode) is our text editor and IDE. It has a rich ecosystem of plugins and is very user-friendly, partially owing to its vast customization options. Also, our team already uses/used VSCode currently or in the past, so the learning curve was nonexistent.
+
+# 5. Learning Strategy
+
+Besides word-of-mouth via team group chat, Chip used Next.js's [fantastic learning resources](https://nextjs.org/learn) to familiarize himself with Next.js and React for the next stage of development.
