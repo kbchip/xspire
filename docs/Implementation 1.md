@@ -32,3 +32,7 @@ Xspire is a food tracking application for people who want to get the most out of
 
 [Pull Requests](https://github.com/kbchip/xspire/pulls?q=is%3Apr+author%3Aprojectsbyferm)
 ![image](https://github.com/user-attachments/assets/16245c74-a47e-4908-a002-cbbd4d0b25ec)
+
+# 3. Testing Strategy
+
+Still WIP at time of writing. [Jest](https://jestjs.io/) testing planned but not implemented.
