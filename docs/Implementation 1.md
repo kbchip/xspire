@@ -73,11 +73,9 @@ Besides word-of-mouth via team group chat, Chip used Next.js's [fantastic learni
 
 # 6. Deployment
 
-**Live System Link:** [Xspire](https://xspire-deesfqgmdaexhgdz.westus3-01.azurewebsites.net/)
-
-**Deployment Method:** Azure integrated CD with GitHub Actions - automatic deployment on commits to main
-
-**Platform Justification:** (From above) We chose Azure over alternatives like AWS and Heroku because all team members have prior experience with the Azure ecosystem, as well as the generous student credits we all get through NAU.
+- **Live System Link:** [Xspire](https://xspire-deesfqgmdaexhgdz.westus3-01.azurewebsites.net/)
+- **Deployment Method:** Azure integrated CD with GitHub Actions - automatic deployment on commits to main
+- **Platform Justification:** (From [above](https://github.com/kbchip/xspire/docs/Implementation%201.md#azure)) We chose Azure over alternatives like AWS and Heroku because all team members have prior experience with the Azure ecosystem, as well as the generous student credits we all get through NAU.
 
 # 7. Licensing
 
@@ -92,3 +90,10 @@ Link to [README.md](https://github.com/kbchip/xspire/README.md)
 Still subject to change, but currently we are working with common sense and frequent testing from developers to see if anything feels off or hard to use.
 ![image](https://github.com/user-attachments/assets/bc52e2fc-1397-470c-9a85-27a3e3b28bf9)
 The design language is fairly minimal at the moment, but once we solidify the UI/UX we will decide on an accent color and icon set.
+
+# 10. Retrospective Analysis
+
+- **Key Learnings:** We learned that there is a lot more that goes into deploying something into the real world than we had initially expected. We've been spoiled by easy-to-use static site generators like GitHub Pages and Google Sites. Adding the requirement of a server to store user data throws a wrench into this process and made us learn a lot of new things. We also learned that we need to schedule more technical meetings during the week. We barely had any time to work together, and even when we did, life still got in the way.
+- **Challenges Overcome:** Even though Amber was hospitalized this week, we still made substantial progress towards our MVP and started solidifying our workflow.
+- **Future Improvements:** We will transition to a Next.js/React stack and implement testing for database operations.
+- **Process Improvements:** We will have more frequent communications and technical meetings where we can all work together during an allotted time.
