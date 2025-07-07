@@ -1,9 +1,11 @@
+#!/usr/bin/env node
+
 /**
  * Module dependencies.
  */
 
-var express = require('express');
-var app = express();
+var app = require('../app');
+var debug = require('debug')('xspire:server');
 var http = require('http');
 
 /**
