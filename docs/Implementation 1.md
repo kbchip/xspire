@@ -82,3 +82,13 @@ Besides word-of-mouth via team group chat, Chip used Next.js's [fantastic learni
 # 7. Licensing
 
 We chose the MIT license as it is overwhelmingly used by Node.js packages and projects, so we chose to adopt the community approach and stick to convention.
+
+# 8. Repository Documentation
+
+Link to [README.md](https://github.com/kbchip/xspire/README.md)
+
+# 9. User Interface Design
+
+Still subject to change, but currently we are working with common sense and frequent testing from developers to see if anything feels off or hard to use.
+![image](https://github.com/user-attachments/assets/bc52e2fc-1397-470c-9a85-27a3e3b28bf9)
+The design language is fairly minimal at the moment, but once we solidify the UI/UX we will decide on an accent color and icon set.
