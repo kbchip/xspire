@@ -78,3 +78,7 @@ Besides word-of-mouth via team group chat, Chip used Next.js's [fantastic learni
 **Deployment Method:** Azure integrated CD with GitHub Actions - automatic deployment on commits to main
 
 **Platform Justification:** (From above) We chose Azure over alternatives like AWS and Heroku because all team members have prior experience with the Azure ecosystem, as well as the generous student credits we all get through NAU.
+
+# 7. Licensing
+
+We chose the MIT license as it is overwhelmingly used by Node.js packages and projects, so we chose to adopt the community approach and stick to convention.
