@@ -23,7 +23,7 @@ then open up a browser, type in `localhost:3000` in the address bar, and you're 
 
 ## Contributing
 
-Please read [CONTRIBUTING.md]() for details on how to contribute, as well as best practices for working within our codebase.
+Please read [CONTRIBUTING.md](https://github.com/kbchip/xspire/CONTRIBUTING.md) for details on how to contribute, as well as best practices for working within our codebase.
 
 ## Versioning
 
