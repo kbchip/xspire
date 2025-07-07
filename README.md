@@ -37,7 +37,7 @@ We use [Semantic Versioning](https://semver.org/) for versioning. For the versio
 
 ## License
 
-This project is licensed under the MIT License. See [LICENSE.md](https://github.com/kbchip/xspire/LICENSE.md).
+This project is licensed under the MIT License. See [LICENSE](https://github.com/kbchip/xspire/LICENSE).
 
 ## Special Thanks
 
