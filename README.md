@@ -1,4 +1,5 @@
 # Xspire
+![Static Badge](https://img.shields.io/badge/Version-0.0.0--alpha-blue?logo=semver)
 
 Xspire is a food tracking application for people who want to get the most out of their ingredients. Users can keep tabs on when food was bought, where it is stored, and when it expires. Xspire also provides recipe suggestions for food that's about to go bad, as well as recipes that only include ingredients the user has on hand.
 
