@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Product - Xspire</title>
+  <link rel="stylesheet" href="form.css" />
+</head>
+<body>
+  <div class="form-container">
+    <h2>Add a New Product</h2>
+    <div class="form-field">
+      <label for="name">Product Name:</label>
+      <input type="text" id="name" placeholder="e.g., Butter" />
+    </div>
+    <div class="form-field">
+      <label for="bought">Bought On:</label>
+      <input type="date" id="bought" />
+    </div>
+    <div class="form-field">
+      <label for="expires">Expires On:</label>
+      <input type="date" id="expires" />
+    </div>
+    <div class="form-actions">
+      <button onclick="addProduct()">Add</button>
+    </div>
+  </div>
+
+  <script>
+    function addProduct() {
+      const name = document.getElementById('name').value.trim();
+      const bought = document.getElementById('bought').value;
+      const expires = document.getElementById('expires').value;
+
+      if (!name || !bought || !expires) {
+        alert('Please fill in all fields.');
+        return;
+      }
+
+      const newProduct = {
+        name,
+        bought,
+        expires
+      };
+
+      // Save to localStorage
+      const existing = JSON.parse(localStorage.getItem('xspireItems')) || [];
+      existing.push(newProduct);
+      localStorage.setItem('xspireItems', JSON.stringify(existing));
+
+      // Redirect back to main page
+      window.location.href = 'index.html';
+    }
+  </script>
+
+</body>
+</html>
