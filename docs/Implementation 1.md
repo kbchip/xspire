@@ -70,3 +70,11 @@ Visual Studio Code (VSCode) is our text editor and IDE. It has a rich ecosystem 
 # 5. Learning Strategy
 
 Besides word-of-mouth via team group chat, Chip used Next.js's [fantastic learning resources](https://nextjs.org/learn) to familiarize himself with Next.js and React for the next stage of development.
+
+# 6. Deployment
+
+**Live System Link:** [Xspire](https://xspire-deesfqgmdaexhgdz.westus3-01.azurewebsites.net/)
+
+**Deployment Method:** Azure integrated CD with GitHub Actions - automatic deployment on commits to main
+
+**Platform Justification:** (From above) We chose Azure over alternatives like AWS and Heroku because all team members have prior experience with the Azure ecosystem, as well as the generous student credits we all get through NAU.
