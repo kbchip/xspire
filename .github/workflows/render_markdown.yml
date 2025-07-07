@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       filename:
-        description: "Filename of markdown file to be rendered"
+        description: "Filename of markdown file in docs/ subdir to be rendered"
         required: true
         type: string
 
@@ -18,7 +18,7 @@ jobs:
         
       - uses: docker://pandoc/latex:3.7-ubuntu
         with:
-          args: --output=output/result.pdf ${{ inputs.filename }}
+          args: --output=output/result.pdf docs/${{ inputs.filename }}
           
       - uses: actions/upload-artifact@v4
         with:
