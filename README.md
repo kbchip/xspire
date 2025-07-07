@@ -5,15 +5,21 @@ Xspire is a food tracking application for people who want to get the most out of
 
 ## Getting Started
 
-As Xspire uses Next.js, building it is as simple as [installing Node.js](https://nodejs.org/en/download), cloning the `main` branch (we recommend a [shallow clone](https://git-scm.com/docs/shallow) unless you _really_ need all the commit history of every branch) and running this command:
+As Xspire uses Next.js, building it is as simple as [installing Node.js](https://nodejs.org/en/download), cloning the `main` branch (we recommend a [shallow clone](https://git-scm.com/docs/shallow) unless you _really_ need all the commit history of every branch), and then running the following to start the dev server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
-npm install
-```
-Start a local web server with 
-```
-npm start
-```
-then open up a browser, type in `localhost:3000` in the address bar, and you're good to go!
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `src/app/page.tsx`. The page auto-updates as you edit the file.
 
 ## Built With
 - Node.js: Dependency management

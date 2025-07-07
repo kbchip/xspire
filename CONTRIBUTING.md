@@ -11,20 +11,25 @@ Thanks for your interest in contributing! We appreciate your help.
 - Submit a pull request with a clear description of your changes.
 
 ## Development Setup
-Clone the repository with
+Clone the repository:
 ```
 git clone https://github.com/kbchip/xspire.git --depth 10
 ```
-Then, run
+
+Run the development server:
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
-npm install
-```
-followed by
-```
-npm start
-```
-Your web server is up and running (locally)!
-Finally, just go to `localhost:3000` to access your local copy of Xspire.
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `src/app/page.tsx`. The page auto-updates as you edit the file.
 
 ## Versioning and Documentation
 Use [Semantic Versioning](https://semver.org/).
