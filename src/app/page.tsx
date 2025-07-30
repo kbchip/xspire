@@ -37,7 +37,7 @@ export default function Home() {
   };
 
   const sortItems = (sortType: string) => {
-    let sortedData = [...inventoryData];
+    const sortedData = [...inventoryData];
     
     switch (sortType) {
       case 'expiration':
