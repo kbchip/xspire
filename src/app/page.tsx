@@ -65,10 +65,23 @@ export default function Home() {
     <div className="flex min-h-screen bg-gray-100">
       {/* Sidebar */}
       <div className="w-16 bg-white flex flex-col items-center py-5 gap-5 border-r border-gray-300">
-        <Image src="https://img.icons8.com/ios/50/milk-bottle.png" alt="milk" width={30} height={30} className="opacity-60" />
-        <Image src="https://img.icons8.com/ios/50/jar.png" alt="jar" width={30} height={30} className="opacity-60" />
-        <Image src="https://img.icons8.com/ios/50/bowl.png" alt="bowl" width={30} height={30} className="opacity-60" />
-        <Image src="https://img.icons8.com/ios/50/jam.png" alt="jam" width={30} height={30} className="opacity-60" />
+
+        <a href="https://www.flaticon.com/free-icons/glass-jar" title="glass jar icons" target="_blank" rel="noopener noreferrer">
+          <Image src="/images/glass-jar.png" alt="Glass jar icons created by Iconjam - Flaticon" width={30} height={30} className="opacity-60" />
+        </a>
+
+        <a href="https://www.flaticon.com/free-icons/jam" title="jam icons" target="_blank" rel="noopener noreferrer">
+          <Image src="/images/jam.png" alt="Jam icons created by Freepik - Flaticon" width={30} height={30} className="opacity-60" />
+        </a>
+
+        <a href="https://www.flaticon.com/free-icons/milk" title="milk icons" target="_blank" rel="noopener noreferrer">
+          <Image src="/images/milk.png" alt="Milk icons created by Freepik - Flaticon" width={30} height={30} className="opacity-60" />
+        </a>
+
+        <a href="https://www.flaticon.com/free-icons/market" title="market icons" target="_blank" rel="noopener noreferrer">
+          <Image src="/images/market.png" alt="Market icons created by mynamepong - Flaticon" width={30} height={30} className="opacity-60" />
+        </a>
+
       </div>
 
       {/* Main Content */}
