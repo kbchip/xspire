@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
 import { updateInventoryItem, deleteInventoryItem } from '@/app/lib/data';
+import { InventoryItem } from '@/app/lib/types';
 
 function getUserFromToken(request: NextRequest): number | null {
     const token = request.cookies.get('auth-token')?.value;
@@ -12,7 +13,7 @@ function getUserFromToken(request: NextRequest): number | null {
 
         const decoded = jwt.verify(token, jwtSecret) as { userId: number };
         return decoded.userId;
-    } catch (error) {
+    } catch {
         return null;
     }
 }
@@ -33,7 +34,7 @@ export async function PUT(
         const { name, bought, expires, priority } = await request.json();
         const uuid = params.uuid;
 
-        const updates: any = {};
+        const updates: Partial<InventoryItem> = {};
         if (name !== undefined) updates.name = name.trim();
         if (bought !== undefined) updates.bought = new Date(bought);
         if (expires !== undefined) updates.expires = new Date(expires);

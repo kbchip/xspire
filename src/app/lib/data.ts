@@ -63,7 +63,7 @@ export async function updateInventoryItem(id: number, item: Partial<InventoryIte
     const connection = await getConnection();
     try {
         const updates: string[] = [];
-        const values: any[] = [];
+        const values: (string|number|Date)[] = [];
 
         if (item.name !== undefined) {
             updates.push('name = ?');
