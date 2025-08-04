@@ -1,28 +1,31 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-
-interface InventoryItem {
-  name: string;
-  bought: string;
-  expires: string;
-  priority: number;
-  uid: string;
-}
+import { useAuth } from './contexts/AuthContext';
+import { InventoryItem } from './lib/types';
 
 export default function Home() {
+  const { user, isLoading, logout } = useAuth();
+  const router = useRouter();
   const [inventoryData, setInventoryData] = useState<InventoryItem[]>([]);
   const [sortBy, setSortBy] = useState<string>('');
+
+  useEffect(() => {
+    if (!isLoading && !user) {
+      router.push('/auth');
+    }
+  }, [user, isLoading, router]);
 
   // Initialize inventory data
   useEffect(() => {
     const defaultData: InventoryItem[] = [
-      { name: "Milk", bought: "2025-06-18", expires: "2025-06-26", priority: 2, uid: "milk"},
-      { name: "Eggs", bought: "2025-06-15", expires: "2025-06-30", priority: 1, uid: "eggs"},
-      { name: "Strawberry Jam", bought: "2025-03-19", expires: "2025-09-04", priority: 3, uid: "strawberry jam"},
-      { name: "Butter", bought: "2025-01-01", expires: "2025-03-25", priority: 4, uid: "butter"},
+      { user_id: 1, name: "Milk", bought: new Date("2025-06-18"), expires: new Date("2025-06-26"), priority: 2, uuid: crypto.randomUUID()},
+      { user_id: 1, name: "Eggs", bought: new Date("2025-06-15"), expires: new Date("2025-06-30"), priority: 1, uuid: crypto.randomUUID()},
+      { user_id: 1, name: "Strawberry Jam", bought: new Date("2025-03-19"), expires: new Date("2025-09-04"), priority: 3, uuid: crypto.randomUUID()},
+      { user_id: 1, name: "Butter", bought: new Date("2025-01-01"), expires: new Date("2025-03-25"), priority: 4, uuid: crypto.randomUUID()},
     ];
 
     // Load from localStorage and merge with default data
@@ -30,8 +33,8 @@ export default function Home() {
     setInventoryData([...defaultData, ...storedProducts]);
   }, []);
 
-  const deleteItem = (uid: string) => {
-    const updatedData = inventoryData.filter(item => item.uid !== uid);
+  const deleteItem = (uuid: string) => {
+    const updatedData = inventoryData.filter(item => item.uuid !== uuid);
     setInventoryData(updatedData);
     localStorage.setItem('products', JSON.stringify(updatedData));
   };
@@ -57,9 +60,21 @@ export default function Home() {
     setSortBy(sortType);
   };
 
-  const isExpired = (expirationDate: string) => {
+  const isExpired = (expirationDate: Date) => {
     return new Date(expirationDate).getTime() < new Date().setHours(0, 0, 0, 0);
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <div className="text-xl">Loading...</div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return null; // Will redirect to auth page
+  }
 
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -88,19 +103,30 @@ export default function Home() {
       <div className="flex-1 p-10">
         {/* Header */}
         <div className="flex justify-between items-center mb-5">
-          <h1 className="text-2xl font-bold">Xspire</h1>
-          <Link href="/add">
-            <button className="px-4 py-2 text-sm bg-green-600 text-white border-none rounded-lg cursor-pointer hover:bg-green-700 transition-colors">
-              Add Me
+          <div>
+            <h1 className="text-2xl font-bold">Xspire</h1>
+            <p className="text-gray-600">Welcome back, {user.name}!</p>
+          </div>
+          <div className="flex gap-2">
+            <Link href="/add">
+              <button className="px-4 py-2 text-sm bg-green-600 text-white border-none rounded-lg cursor-pointer hover:bg-green-700 transition-colors">
+                Add Me
+              </button>
+            </Link>
+            <button
+              onClick={logout}
+              className="px-4 py-2 text-sm bg-gray-600 text-white border-none rounded-lg cursor-pointer hover:bg-gray-700 transition-colors"
+            >
+              Logout
             </button>
-          </Link>
+          </div>
         </div>
 
         {/* Inventory Grid */}
         <div className="grid gap-4 mb-8">
           {inventoryData.map((item) => (
             <div
-              key={item.uid}
+              key={item.uuid}
               className={`bg-white p-4 rounded-lg shadow-sm border flex justify-between items-center ${
                 isExpired(item.expires) ? 'border-red-500 bg-red-50' : 'border-gray-200'
               }`}
@@ -108,12 +134,12 @@ export default function Home() {
               <div>
                 <div className="font-semibold text-lg">{item.name}</div>
                 <div className="text-gray-600 text-sm">
-                  Bought: {item.bought} | Expires: {item.expires}
+                  Bought: {item.bought.toDateString()} | Expires: {item.expires.toDateString()}
                 </div>
               </div>
               <div>
                 <button
-                  onClick={() => deleteItem(item.uid)}
+                  onClick={() => deleteItem(item.uuid)}
                   className="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
                 >
                   🗑️
