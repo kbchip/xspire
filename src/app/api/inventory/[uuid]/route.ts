@@ -20,8 +20,10 @@ function getUserFromToken(request: NextRequest): number | null {
 
 export async function PUT(
     request: NextRequest,
-    { params }: { params: { uuid: string } }
+    { params }: { params: Promise<{ uuid: string }> }
 ) {
+    const { uuid } = await params;
+    
     try {
         const userId = getUserFromToken(request);
         if (!userId) {
@@ -32,7 +34,6 @@ export async function PUT(
         }
 
         const { name, bought, expires, priority } = await request.json();
-        const uuid = params.uuid;
 
         const updates: Partial<InventoryItem> = {};
         if (name !== undefined) updates.name = name.trim();
@@ -63,8 +64,10 @@ export async function PUT(
 
 export async function DELETE(
     request: NextRequest,
-    { params }: { params: { uuid: string } }
+    { params }: { params: Promise<{ uuid: string }> }
 ) {
+    const { uuid } = await params;
+
     try {
         const userId = getUserFromToken(request);
         if (!userId) {
@@ -74,7 +77,6 @@ export async function DELETE(
             );
         }
 
-        const uuid = params.uuid;
         const success = await deleteInventoryItem(uuid, userId);
 
         if (success) {
