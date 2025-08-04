@@ -12,7 +12,7 @@ function getUserFromToken(request: NextRequest): number | null {
 
         const decoded = jwt.verify(token, jwtSecret) as { userId: number };
         return decoded.userId;
-    } catch (error) {
+    } catch {
         return null;
     }
 }
