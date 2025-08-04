@@ -12,6 +12,7 @@ export default function Home() {
   const router = useRouter();
   const [inventoryData, setInventoryData] = useState<InventoryItem[]>([]);
   const [sortBy, setSortBy] = useState<string>('');
+  const [isLoadingInventory, setIsLoadingInventory] = useState(true);
 
   useEffect(() => {
     if (!isLoading && !user) {
@@ -19,24 +20,46 @@ export default function Home() {
     }
   }, [user, isLoading, router]);
 
-  // Initialize inventory data
+  // Load inventory data from database
   useEffect(() => {
-    const defaultData: InventoryItem[] = [
-      { user_id: 1, name: "Milk", bought: new Date("2025-06-18"), expires: new Date("2025-06-26"), priority: 2, uuid: crypto.randomUUID()},
-      { user_id: 1, name: "Eggs", bought: new Date("2025-06-15"), expires: new Date("2025-06-30"), priority: 1, uuid: crypto.randomUUID()},
-      { user_id: 1, name: "Strawberry Jam", bought: new Date("2025-03-19"), expires: new Date("2025-09-04"), priority: 3, uuid: crypto.randomUUID()},
-      { user_id: 1, name: "Butter", bought: new Date("2025-01-01"), expires: new Date("2025-03-25"), priority: 4, uuid: crypto.randomUUID()},
-    ];
+    if (user) {
+      loadInventory();
+    }
+  }, [user]);
 
-    // Load from localStorage and merge with default data
-    const storedProducts = JSON.parse(localStorage.getItem('products') || '[]');
-    setInventoryData([...defaultData, ...storedProducts]);
-  }, []);
+  const loadInventory = async () => {
+    try {
+      setIsLoadingInventory(true);
+      const response = await fetch('/api/inventory');
+      if (response.ok) {
+        const data = await response.json();
+        setInventoryData(data.inventory);
+      } else {
+        console.error('Failed to load inventory');
+      }
+    } catch (error) {
+      console.error('Error loading inventory:', error);
+    } finally {
+      setIsLoadingInventory(false);
+    }
+  };
 
-  const deleteItem = (uuid: string) => {
-    const updatedData = inventoryData.filter(item => item.uuid !== uuid);
-    setInventoryData(updatedData);
-    localStorage.setItem('products', JSON.stringify(updatedData));
+  const deleteItem = async (uuid: string) => {
+    try {
+      const response = await fetch(`/api/inventory/${uuid}`, {
+        method: 'DELETE',
+      });
+      
+      if (response.ok) {
+        setInventoryData(inventoryData.filter(item => item.uuid !== uuid));
+      } else {
+        console.error('Failed to delete item');
+        alert('Failed to delete item. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error deleting item:', error);
+      alert('Failed to delete item. Please try again.');
+    }
   };
 
   const sortItems = (sortType: string) => {
@@ -64,7 +87,7 @@ export default function Home() {
     return new Date(expirationDate).getTime() < new Date().setHours(0, 0, 0, 0);
   };
 
-  if (isLoading) {
+  if (isLoading || isLoadingInventory) {
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="text-xl">Loading...</div>
@@ -110,7 +133,7 @@ export default function Home() {
           <div className="flex gap-2">
             <Link href="/add">
               <button className="px-4 py-2 text-sm bg-green-600 text-white border-none rounded-lg cursor-pointer hover:bg-green-700 transition-colors">
-                Add Me
+                Add Item
               </button>
             </Link>
             <button
@@ -134,7 +157,7 @@ export default function Home() {
               <div>
                 <div className="font-semibold text-lg">{item.name}</div>
                 <div className="text-gray-600 text-sm">
-                  Bought: {item.bought.toDateString()} | Expires: {item.expires.toDateString()}
+                  Bought: {new Date(item.bought).toDateString()} | Expires: {new Date(item.expires).toDateString()}
                 </div>
               </div>
               <div>
