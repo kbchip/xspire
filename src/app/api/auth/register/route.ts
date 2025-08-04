@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
         const passwordHash = await bcrypt.hash(password, saltRounds);
 
         // Create user
-        const [result] = await connection.execute(
+        await connection.execute(
             'INSERT INTO users (email, password_hash, name) VALUES (?, ?, ?)',
             [email, passwordHash, name]
         );

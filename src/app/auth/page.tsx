@@ -38,7 +38,7 @@ export default function AuthPage() {
             } else {
                 setError(isLogin ? 'Invalid credentials' : 'Registration failed');
             }
-        } catch (error) {
+        } catch {
             setError('An error occurred. Please try again.');
         } finally {
             setIsLoading(false);

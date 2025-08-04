@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { getConnection } from '@/app/lib/data';
 import dotenv from 'dotenv';
+import { User } from '@/app/lib/types';
 
 dotenv.config();
 
@@ -34,7 +35,7 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const user = users[0] as any;
+        const user = users[0] as User;
 
         // Verify password
         const isValidPassword = await bcrypt.compare(password, user.password_hash);
